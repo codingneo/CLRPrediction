@@ -32,7 +32,7 @@ from model import ftrl_proximal
 # A, paths
 train = '../data/train'               # path to training file
 test = '../data/test'                 # path to testing file
-submission = 'submission_fast_solution.csv'  # path of to be outputted submission file
+submission = '../submissions/3-gram-site-app.csv'  # path of to be outputted submission file
 
 # B, model
 alpha = .1  # learning rate
@@ -84,7 +84,7 @@ while decreased:
             #            validate with instances from day N + 1 and after
             #
             # holdout: validate with every N instance, train with others
-            loss += logloss(p, y)
+            loss += logloss.loss(p, y)
             #if (y==1):
                 #print(row)
                 #print('Label: %d, Prediction: %f and Log Loss: %f' % (y, p, logloss(p,y)))
@@ -138,7 +138,7 @@ for t, date, row, ID, x, y in generator.generate(train, D):
     if (holdafter and date <= holdafter) or (holdout and t % holdout != 0):
         p = optimal_learner.predict(x)
 
-        train_loss += logloss(p, y)
+        train_loss += logloss.loss(p, y)
         train_count += 1
         #print(row)
         #print('Label: %d, Prediction: %f and Log Loss: %f' % (y, p, logloss(p,y)))   
@@ -154,6 +154,6 @@ print('Training logloss: %f, elapsed time: %s' % (
 
 with open(submission, 'w') as outfile:
     outfile.write('id,click\n')
-    for t, date, row, ID, x, y in data(test, D, code_counts):
+    for t, date, row, ID, x, y in generator.generate(test, D):
         p = optimal_learner.predict(x)
         outfile.write('%s,%s\n' % (ID, str(p)))

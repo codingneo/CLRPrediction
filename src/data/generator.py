@@ -43,13 +43,11 @@ def generate(path, D):
             index = abs(hash(code)) % D
             x.append(index) 
 
-            # for key1 in row:
-            #     for key2 in row:   
-            #         if (key1=='C14' and key2=='C19'):
-            #             value1 = row[key1]
-            #             value2 = row[key2]
-            #             code = key1 + '_' + value1 + '_' + key2 + '_' + value1
-            #             index = abs(hash(code)) % D
-            #             x.append(index)
+            if (key!='app_id' and key != 'site_id'):
+                value1 = row['site_id']
+                value2 = row['app_id']
+                code = value + '_' + value1 + '_' + value2
+                index = abs(hash(code)) % D
+                x.append(index)
 
         yield t, date, row, ID, x, y

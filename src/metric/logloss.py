@@ -1,6 +1,6 @@
 from math import log
 
-def logloss(p, y):
+def loss(p, y):
     ''' FUNCTION: Bounded logloss
 
         INPUT:
