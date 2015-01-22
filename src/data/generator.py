@@ -296,8 +296,78 @@ def interaction_not_features(row, D):
         index = abs(hash(code)) % D
         x.append(index)
 
-    if (row['C20']!='01' and row['C21']!='23'):
+    if (row['C20']!='-1' and row['C21']!='23'):
         code = 'C20_not_empty_C21_not_23'
+        index = abs(hash(code)) % D
+        x.append(index)
+
+    if (row['C15']!='320'):
+        value1 = row['site_id']
+        value2 = row['app_id']
+        
+        code = value1 + '_' + value2 + '_C15_not_320'
+        index = abs(hash(code)) % D
+        x.append(index)
+
+    if (row['C20']!='-1'):
+        value1 = row['site_id']
+        value2 = row['app_id']
+        
+        code = value1 + '_' + value2 + '_C20_not_empty'
+        index = abs(hash(code)) % D
+        x.append(index)
+
+    if (row['C20']!='-1'):
+        value1 = row['site_id']
+        value2 = row['app_id']
+        value3 = row['device_model']
+        
+        code = value1 + '_' + value2 + '_' + value3 + '_C20_not_empty'
+        index = abs(hash(code)) % D
+        x.append(index)
+
+    if (row['C15']!='320'):
+        value1 = row['site_id']
+        value2 = row['app_id']
+        value3 = row['device_model']
+        
+        code = value1 + '_' + value2 + '_' + value3 + '_C15_not_320'
+        index = abs(hash(code)) % D
+        x.append(index)
+
+    if (row['banner_pos']!='0' and row['C14']!='4687'):
+        value1 = row['site_id']
+        value2 = row['app_id']
+        value3 = row['device_model']
+        
+        code = value1 + '_' + value2 + '_' + value3 + '_banner_pos_not_0_C14_not_4687'
+        index = abs(hash(code)) % D
+        x.append(index)
+
+    if (row['banner_pos']!='0' and row['C15']!='320'):
+        value1 = row['site_id']
+        value2 = row['app_id']
+        value3 = row['device_model']
+        
+        code = value1 + '_' + value2 + '_' + value3 + '_banner_pos_not_0_C14_not_320'
+        index = abs(hash(code)) % D
+        x.append(index)
+
+    if (row['banner_pos']!='0' and row['C21']!='23'):
+        value1 = row['site_id']
+        value2 = row['app_id']
+        value3 = row['device_model']
+        
+        code = value1 + '_' + value2 + '_' + value3 + '_banner_pos_not_0_C21_not_23'
+        index = abs(hash(code)) % D
+        x.append(index)
+
+    if (row['C14']!='4687' and row['C15']!='320'):
+        value1 = row['site_id']
+        value2 = row['app_id']
+        value3 = row['device_model']
+        
+        code = value1 + '_' + value2 + '_' + value3 + '_C14_not_4687_C15_not_320'
         index = abs(hash(code)) % D
         x.append(index)
 
@@ -364,7 +434,7 @@ def generate(path, D):
             del row['click']
 
         #if (int(row['hour'])>=14102300):
-        #    break
+        #   break
         # else:
         #     print(row['hour'])
 
