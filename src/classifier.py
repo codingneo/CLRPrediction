@@ -30,9 +30,9 @@ from model import ftrl_proximal
 ##############################################################################
 
 # A, paths
-train = '../data/train'               # path to training file
-test = '../data/test'                 # path to testing file
-submission = '../submissions/3-gram-site-app.csv'  # path of to be outputted submission file
+train = './data/train'               # path to training file
+test = './data/test'                 # path to testing file
+submission = './submissions/ftrl.csv'  # path of to be outputted submission file
 
 # B, model
 alpha = .1  # learning rate

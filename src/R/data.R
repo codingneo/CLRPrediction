@@ -1,16 +1,6 @@
 #######################################################################################################################
-#import and merge
-#th1 <- read.csv(file="../../data/train")
 
 gen_features <- function(th1) {
-	#th1 <- th1[th1$hour<=14102300,]
-	th1$y <- th1$click
-
-	th1$split1 <- 0
-	th1$split1[th1$hour>=14103000] <- 2
-
-	th1$ws<-1
-	th1$ws[th1$hour>=14103000] <- 0
 
 	#######################################################################################################################
 	#convert variables into sequential IDs
@@ -76,3 +66,25 @@ gen_features <- function(th1) {
 
 	return(th1)
 }
+
+#import and merge
+train <- read.csv(file="../../data/train", colClasses=c("id"="character"))
+train <- train[train$site_id=='12fb4121',]
+train$split <- 0
+train$split[train$hour>=14103000] <- 1
+train$ws<-1
+train$ws[train$hour>=14103000] <- 0
+
+test <- read.csv(file="../../data/test", colClasses=c("id"="character"))
+test$split <- 0
+test$split[test$site_id=='12fb4121'] <- 2
+test1 <- test[test$site_id=='12fb4121',]
+test1$click <- -1
+test1$split <- 2
+test1$ws <- 0
+
+data<-rbind(train, test1)
+#th1 <- th1[th1$hour<=14102300,]
+data$y <- data$click
+
+fea <- gen_features(data)

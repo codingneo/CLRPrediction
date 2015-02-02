@@ -403,6 +403,12 @@ def interaction_features(key, value, row, D):
         index = abs(hash(code)) % D
         x.append(index)
 
+    if (key!='C14'):
+        value1 = row['C14']
+        code = key + '_' + value + '_C14_' + value1
+        index = abs(hash(code)) % D
+        x.append(index)
+
     return x
 
 def generate(path, D):
